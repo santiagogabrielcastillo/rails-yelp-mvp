@@ -26,4 +26,14 @@
   <% end %>
 </div>
 <hr>
-<%= link_to 'Add a review',  new_restaurant_review_path(@restaurant) %> | <%= link_to 'Go back',  restaurants_path, class: 'card-link'%>
+
+<div class="p-3 my-4">
+<h3>Create a new review</h3>
+  <%= simple_form_for [@restaurant, @review] do |f| %>
+  <%= f.input :rating, collection: (0..5) %>
+  <%= f.input :content %>
+  <%= f.button :submit, class: 'btn btn-primary my-3' %>
+  <% end %>
+
+  <%= link_to 'Go back', restaurant_path(@restaurant) %>
+</div>

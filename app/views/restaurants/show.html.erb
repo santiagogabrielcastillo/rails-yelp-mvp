@@ -1,10 +1,29 @@
-<div class="card" style="width: 18rem;">
+<h1 class="mt-4">Restaurant details</h1>
+<div class="card py-3 my-5" style="width: 36rem;">
   <div class="card-body">
-    <h5 class="card-title"><%= @restaurant.name %></h5>
-    <h6 class="card-subtitle mb-2 text-muted"><%= @restaurant.category %></h6>
-    <i class="fa fa-address-card" aria-hidden="true"></i><p class="card-text"><%= @restaurant.address %></p>
-    <i class="fa fa-phone" aria-hidden="true"></i><p class="card-text"><%= @restaurant.phone_number %></p>
-    <%= link_to 'Go back',  restaurants_path, class: 'card-link'%>
-    <a href="#" class="card-link">Another link</a>
+    <div class="d-flex justify-content-between">
+      <h5 class="card-title"><%= @restaurant.name %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= @restaurant.category %></h6>
+    </div>
+    <div class="py-3">
+      <i class="fa fa-address-card" aria-hidden="true"></i><span class="card-text p-3"><%= @restaurant.address %></span>
+    </div>
+    <div class="py-3">
+      <i class="fa fa-phone" aria-hidden="true"></i><span class="card-text p-3"><%= @restaurant.phone_number %></span>
+    </div>
   </div>
 </div>
+<hr>
+<div class="container">
+<h1>Reviews</h1>
+  <% @restaurant.reviews.each do |r| %>
+  <div class="card">
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">Rating: <%= r.rating %></h6>
+      <p class="card-text"><%= r.content %></p>
+    </div>
+  </div>
+  <% end %>
+</div>
+<hr>
+<%= link_to 'Add a review',  new_restaurant_review_path(@restaurant) %> | <%= link_to 'Go back',  restaurants_path, class: 'card-link'%>
